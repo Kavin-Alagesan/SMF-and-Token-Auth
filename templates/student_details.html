@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <form name="myForm" method="POST" action="{% url 'student_details' %}" enctype="multipart/form-data"
+    onsubmit="return validateForm()">
+    {% csrf_token %}
+    <h3>Add Student Details</h3>
+    <div class="row mb-3">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Father's name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control form-control-sm" name="txtFatherName" id="txtFatherName"
+          placeholder="Enter Father's name">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Occupation</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control form-control-sm" name="txtOccupation" id="txtOccupation"
+          placeholder="Enter occuption">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Address</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control form-control-sm" name="txtAddress" id="txtAddress"
+          placeholder="Enter Address">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div style="text-align:center">
+        <button class="btn btn-primary" type="submit" id="get_emp_details1">Submit Details</button>
+        <a href="{% url 'list_details' %}" class="btn btn-outline-dark">List Details</a>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}

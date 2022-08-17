@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <table border="5px solid #000;" class="table table-striped">
+    <tbody>
+      <thead>
+        <tr>
+          <th style="text-align:center">Student Name</th>
+          <th style="text-align:center">Grade</th>
+          <th style="text-align:center">Marks</th>
+          <th style="text-align:center">Father's name</th>
+          <th style="text-align:center">Occupation</th>
+          <th style="text-align:center">Address</th>
+        </tr>
+      </thead>
+    </tbody>
+    <tbody>
+
+      {% for i in venues %}
+      <tr>
+        <td style="text-align:center">{{i.name}}</td>
+        <td style="text-align:center">{{i.student_class}}</td>
+        <td style="text-align:center">{{i.marks}}</td>
+        <td style="text-align:center">{{i.details.0.father_name}}</td>
+        <td style="text-align:center">{{i.details.0.occupation}}</td>
+        <td style="text-align:center">{{i.details.0.address}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- 
+<br/></br/>
+{{ venues }}<br/>
+Has Previous: {{ venues.has_previous }}<br/>
+Has Next: {{ venues.has_next }}<br/>
+Current Page: {{ venues.number }}<br/>
+Number of page: {{ venues.paginator.num_pages }}<br/>
+<br/><br/>
+ -->
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    {% if venues.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">First Page</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ venues.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    {% endif %}
+    {% if venues.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ venues.next_page_number }}">Next page</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ venues.paginator.num_pages }}">Last Page</a></li>
+    {% endif %}
+    
+  </ul>
+</nav>
+
+
+{% endblock %}
+
+<!-- <td>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalUpdate"
+            onclick="edit('{{i.id}}');">Edit</button>
+        </td>
+        <td>
+          <a type="button" href="{% url 'delete' i.id %}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete?')">Delete</a>
+        </td> -->

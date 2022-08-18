@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.http import JsonResponse,HttpResponse
 from django.contrib.auth import logout
 import json
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home(request):
@@ -67,6 +69,7 @@ def get_student_details(request):
     # print("------------Branch Refresh-----------")
     # return render(request,'list_details.html',{'response':response})
 
+@login_required(login_url='/blog/signin/')
 def list_details(request):
     print('------------List details-------')
     get_token = request.session.get('get_token')
